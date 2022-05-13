@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.diozero:diozero-core:1.3.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.diozero/diozero-core/1.3.2/275f5655a90d123a17dcc3aa93fc6b3899fad2af/diozero-core-1.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.diozero/diozero-core/1.3.2/5e10b44e517e7fb560f9956adf85a28dcc73c74a/diozero-core-1.3.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

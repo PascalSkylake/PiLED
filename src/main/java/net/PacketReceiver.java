@@ -13,37 +13,25 @@ public class PacketReceiver extends Thread {
 
     public PacketReceiver() {
         try {
-            socket = new DatagramSocket(8123);
-        } catch (SocketException e) {
-            e.printStackTrace();
-        }
-        try {
-            address = (Inet4Address) Inet4Address.getByAddress(new byte[] {10, 43, 42, 2});
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        start();
+            socket = new DatagramSocket(8123, InetAddress.getLocalHost());
+            address = (Inet4Address) Inet4Address.getByAddress(new byte[]{10, 43, 42, 2});
+            start();
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     public void receivePacket() {
-        buf = new byte[1024];
-        Integer out = 0;
-        packet = new DatagramPacket(buf, 1024);
         try {
+            buf = new byte[1024];
+            Integer out = 0;
+            packet = new DatagramPacket(buf, 1024);
             socket.receive(packet);
-        } catch (IOException e) {
-            System.out.println("failed to receive packet (epic fail)");
-        }
-        buf = packet.getData();
-        ByteArrayInputStream bais = new ByteArrayInputStream(buf);
-        ObjectInputStream ois = null;
-        try {
+            buf = packet.getData();
+            ByteArrayInputStream bais = new ByteArrayInputStream(buf);
+            ObjectInputStream ois = null;
             ois = new ObjectInputStream(bais);
             out = (Integer) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        System.out.println(out);
+            System.out.println(out);
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     @Override
