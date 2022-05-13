@@ -15,13 +15,11 @@ public class AutoBlue extends Pattern {
         boolean goingUp;
         for (int i = 1; i <= LEDStrip.length; i++) {
             goingUp = !(i % 30 >= 15);
-
             if (goingUp) {
                 LEDController.strip.setPixelColourRGB(i - 1, 0, Math.min(((i % 30) * 13), 180), 255);
             } else {
                 LEDController.strip.setPixelColourRGB(i - 1, 0, Math.max((180 - (i + 15) % 30), 0), 255);
             }
-
         }
         LEDController.strip.render();
     }

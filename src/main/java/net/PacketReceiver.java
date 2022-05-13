@@ -1,5 +1,7 @@
 package net;
 
+import led.LEDController;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,7 +10,6 @@ import java.util.Arrays;
 
 public class PacketReceiver implements Runnable {
     private DatagramSocket socket;
-    private byte[] buf;
 
     public PacketReceiver() {
         try {
@@ -18,17 +19,20 @@ public class PacketReceiver implements Runnable {
 
     public void receivePacket() {
         try {
-            buf = new byte[1024];
-            State out;
+            byte[] buf = new byte[1024];
+            State received;
             DatagramPacket packet = new DatagramPacket(buf, 1024);
+            ByteArrayInputStream byteInput = new ByteArrayInputStream(buf);
+            ObjectInputStream objectInput = new ObjectInputStream(byteInput);
+
             socket.receive(packet);
-            buf = packet.getData();
-            ByteArrayInputStream bais = new ByteArrayInputStream(buf);
-            ObjectInputStream ois = new ObjectInputStream(bais);
-            out = (State) ois.readObject();
-            System.out.println(out);
+            received = (State) objectInput.readObject();
+
+            if (received != LEDController.current) {
+                LEDController.current = received;
+                LEDController.strip.switchTo(State.getPattern(received));
+            }
         } catch (Exception e) { e.printStackTrace(); }
-        Arrays.fill(buf, (byte) 0);
     }
 
 
