@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 public class PacketReceiver implements Runnable {
     private DatagramSocket socket;
-    private Inet4Address address;
     private byte[] buf;
 
     public PacketReceiver() {
@@ -20,22 +19,23 @@ public class PacketReceiver implements Runnable {
     public void receivePacket() {
         try {
             buf = new byte[1024];
-            Integer out;
+            State out;
             DatagramPacket packet = new DatagramPacket(buf, 1024);
             socket.receive(packet);
             buf = packet.getData();
             ByteArrayInputStream bais = new ByteArrayInputStream(buf);
             ObjectInputStream ois = new ObjectInputStream(bais);
-            out = (Integer) ois.readObject();
+            out = (State) ois.readObject();
             System.out.println(out);
         } catch (Exception e) { e.printStackTrace(); }
         Arrays.fill(buf, (byte) 0);
     }
 
+
     @Override
     public void run() {
-        boolean running = true;
-        while (running) {
+        //noinspection InfiniteLoopStatement
+        while (true) {
             receivePacket();
         }
     }

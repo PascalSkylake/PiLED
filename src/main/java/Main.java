@@ -1,25 +1,28 @@
-import net.PacketSender;
-import net.PacketReceiver;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.UnknownHostException;
-import java.util.Scanner;
+import led.LEDController;
 
 public class Main {
     public static void main(String[] args) {
+        LEDController controller = new LEDController(180);
+
+        /*
         while (true) {
-            int in = (int) (Math.random() * 10000000);
+
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream os;
+            State test = State.AUTOBLUE;
+            Integer out = 12;
             try {
+                PacketReceiver receiver = new PacketReceiver();
+                strip = new LEDStrip(100);
+                Thread t = new Thread(receiver);
+                t.start();
                 os = new ObjectOutputStream(baos);
-                os.writeObject(in);
+                os.writeObject(test);
                 PacketSender sender = new PacketSender(baos.toByteArray());
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
             Main lock = new Main();
             synchronized (lock) {
                 try {
@@ -28,13 +31,16 @@ public class Main {
                     e.printStackTrace();
                 }
             }
+
         }
 
-        /*
+
         PacketReceiver receiver = new PacketReceiver();
         Thread t = new Thread(receiver);
         t.start();
         System.out.println("waiting");
+
          */
+
     }
 }
