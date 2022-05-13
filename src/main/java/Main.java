@@ -9,26 +9,25 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-            PacketReceiver receiver = new PacketReceiver();
-            Scanner kb = new Scanner(System.in);
-            int in = kb.nextInt();
-            Integer integer = in;
+        while (true) {
+            int in = (int) (Math.random() * 10000000);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream os;
-        try {
-            os = new ObjectOutputStream(baos);
-            os.writeObject(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
+            ObjectOutputStream os;
             try {
+                os = new ObjectOutputStream(baos);
+                os.writeObject(os);
                 PacketSender sender = new PacketSender(baos.toByteArray());
-            } catch (UnknownHostException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-
+            Main lock = new Main();
+            synchronized (lock) {
+                try {
+                    lock.wait(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
