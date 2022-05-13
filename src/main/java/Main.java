@@ -15,7 +15,7 @@ public class Main {
             ObjectOutputStream os;
             try {
                 os = new ObjectOutputStream(baos);
-                os.writeObject(os);
+                os.writeObject(in);
                 PacketSender sender = new PacketSender(baos.toByteArray());
             } catch (Exception e) {
                 e.printStackTrace();
