@@ -1,6 +1,12 @@
 package net;
 
 public enum State {
-    DISABLED,
-
+    DISABLEDRED,
+    DISABLEDBLUE,
+    AUTORED,
+    AUTOBLUE,
+    TELEZERO,
+    TELEONE,
+    TELETWO,
+    TELEWRONG
 }

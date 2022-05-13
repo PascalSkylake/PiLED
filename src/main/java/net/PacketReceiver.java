@@ -4,44 +4,39 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.*;
+import java.util.Arrays;
 
-public class PacketReceiver extends Thread {
+public class PacketReceiver implements Runnable {
     private DatagramSocket socket;
     private Inet4Address address;
-    private DatagramPacket packet;
     private byte[] buf;
 
     public PacketReceiver() {
         try {
             socket = new DatagramSocket(8123, InetAddress.getLocalHost());
-            address = (Inet4Address) Inet4Address.getByAddress(new byte[]{10, 43, 42, 2});
-            start();
         } catch (Exception e) { e.printStackTrace(); }
     }
 
     public void receivePacket() {
         try {
             buf = new byte[1024];
-            Integer out = 0;
-            packet = new DatagramPacket(buf, 1024);
+            Integer out;
+            DatagramPacket packet = new DatagramPacket(buf, 1024);
             socket.receive(packet);
             buf = packet.getData();
             ByteArrayInputStream bais = new ByteArrayInputStream(buf);
-            ObjectInputStream ois = null;
-            ois = new ObjectInputStream(bais);
+            ObjectInputStream ois = new ObjectInputStream(bais);
             out = (Integer) ois.readObject();
             System.out.println(out);
         } catch (Exception e) { e.printStackTrace(); }
+        Arrays.fill(buf, (byte) 0);
     }
 
     @Override
     public void run() {
-        super.run();
-        receivePacket();
-    }
-
-    @Override
-    public void start() {
-        super.start();
+        boolean running = true;
+        while (running) {
+            receivePacket();
+        }
     }
 }
