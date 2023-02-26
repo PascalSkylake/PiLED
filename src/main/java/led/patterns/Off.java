@@ -6,8 +6,8 @@ import led.Pattern;
 import net.State;
 
 public class Off extends Pattern {
-    public Off(State name) {
-        super(name);
+    public Off(int ticksPerSecond, State name) {
+        super(ticksPerSecond, name);
     }
 
     @Override

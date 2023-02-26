@@ -6,8 +6,8 @@ import led.Pattern;
 import net.State;
 
 public class DisabledBlue extends Pattern {
-    public DisabledBlue(State name) {
-        super(name);
+    public DisabledBlue(int ticksPerSecond, State name) {
+        super(ticksPerSecond, name);
     }
 
     @Override

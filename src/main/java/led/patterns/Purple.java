@@ -6,8 +6,8 @@ import led.Pattern;
 import net.State;
 
 public class Purple extends Pattern {
-    public Purple(State name) {
-        super(name);
+    public Purple(int ticksPerSecond, State name) {
+        super(ticksPerSecond, name);
     }
 
     @Override

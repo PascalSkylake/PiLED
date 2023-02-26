@@ -5,10 +5,12 @@ import net.State;
 public abstract class Pattern implements Runnable {
     public State name;
     private boolean running;
+    protected int ticksPerSecond;
 
-    public Pattern(State name) {
+    public Pattern(int ticksPerSecond, State name) {
         this.name = name;
         running = true;
+        this.ticksPerSecond = ticksPerSecond;
     }
 
     public abstract void setPixels();
@@ -20,7 +22,7 @@ public abstract class Pattern implements Runnable {
     @Override
     public void run() {
         long lastTime = System.nanoTime();
-        double ns = 1000000000 / (double) 50;
+        double ns = 1000000000 / (double) ticksPerSecond;
         double delta = 0;
 
         while (running) {
