@@ -12,8 +12,9 @@ public class Purple extends Pattern {
 
     @Override
     public void setPixels() {
+
         for (int i = 0; i < LEDController.strip.length; i++) {
-            LEDController.strip.setPixelColourRGB(i, 100, 0, 255);
+            LEDController.strip.setPixelColourRGB(i, 180, 0, 255);
         }
         LEDController.strip.render();
     }

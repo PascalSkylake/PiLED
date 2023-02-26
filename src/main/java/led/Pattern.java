@@ -5,7 +5,6 @@ import net.State;
 public abstract class Pattern implements Runnable {
     public State name;
     private boolean running;
-    protected int counter;
 
     public Pattern(State name) {
         this.name = name;
@@ -25,13 +24,21 @@ public abstract class Pattern implements Runnable {
         double delta = 0;
 
         while (running) {
+            try {
+                if (Thread.interrupted()) {
+                    throw new InterruptedException();
+                }
+            }
+            catch (Exception e) {
+                return;
+            }
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
 
             if (delta >= 1) {
                 setPixels();
-                counter++;
+                LEDStrip.counter++;
                 delta--;
             }
         }
