@@ -14,7 +14,9 @@ public enum State {
     TELEZERO,
     TELEONE,
     TELETWO,
-    TELEWRONG;
+    TELEWRONG,
+    PURPLE,
+    YELLOW;
 
     public static Pattern getPattern(State s) {
         return switch (s) {

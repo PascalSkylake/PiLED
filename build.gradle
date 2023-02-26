@@ -16,6 +16,16 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
+task customFatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'Main'
+    }
+    baseName = 'all-in-one-jar'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
 test {
     useJUnitPlatform()
 }

@@ -9,8 +9,8 @@ public class LEDController {
     public static State current;
 
     public LEDController(int stripLength) {
-        receiver = new Thread(new PacketReceiver());
+        //receiver = new Thread(new PacketReceiver());
         strip = new LEDStrip(stripLength);
-        receiver.start();
+        //receiver.start();
     }
 }

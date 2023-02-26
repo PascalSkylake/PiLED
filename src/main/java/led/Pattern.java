@@ -5,6 +5,7 @@ import net.State;
 public abstract class Pattern implements Runnable {
     public State name;
     private boolean running;
+    protected int counter;
 
     public Pattern(State name) {
         this.name = name;
@@ -30,6 +31,7 @@ public abstract class Pattern implements Runnable {
 
             if (delta >= 1) {
                 setPixels();
+                counter++;
                 delta--;
             }
         }

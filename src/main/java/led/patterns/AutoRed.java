@@ -12,16 +12,9 @@ public class AutoRed extends Pattern {
 
     @Override
     public void setPixels() {
-        boolean goingUp;
-        for (int i = 1; i <= LEDStrip.length; i++) {
-            goingUp = !(i % 30 >= 15);
-
-            if (goingUp) {
-                LEDController.strip.setPixelColourRGB(i - 1, 255, Math.min(((i % 30) * 13), 180), 0);
-            } else {
-                LEDController.strip.setPixelColourRGB(i - 1, 255, Math.max((180 - ((i + 15) % 30) * 13), 0), 0);
-            }
-
+        for (int i = 0; i < LEDController.strip.length; i++) {
+            double alternate = (70 / 2) * ((-Math.cos((2 * Math.PI * 6 * i) / LEDController.strip.length)) + 1);
+            LEDController.strip.setPixelColourRGB((i + counter) % LEDController.strip.length, 0, (int) alternate, 255);
         }
         LEDController.strip.render();
     }
