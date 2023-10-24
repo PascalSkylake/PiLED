@@ -11,39 +11,41 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        LEDController controller = new LEDController(88);
-	    controller.strip.switchTo(new Yellow(10, State.YELLOW));
+        LEDController controller = new LEDController(147);
+	    controller.strip.switchTo(new Silly(5, State.SILLY));
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
             String temp = scanner.nextLine();
-            System.out.println(temp);
+            int tickrate = Integer.parseInt(temp.split(" ")[1]);
+            temp = temp.split(" ")[0];
+            System.out.println(temp + tickrate);
             if (temp.equals("b")) {
-                controller.strip.switchTo(new AutoBlue(20, State.AUTOBLUE));
+                controller.strip.switchTo(new AutoBlue(tickrate, State.AUTOBLUE));
                 continue;
             }
             else if (temp.equals("r")) {
-                controller.strip.switchTo(new AutoRed(20, State.AUTORED));
+                controller.strip.switchTo(new AutoRed(tickrate, State.AUTORED));
                 continue;
             }
             else if (temp.equals("y")) {
-                controller.strip.switchTo(new Yellow(50, State.YELLOW));
+                controller.strip.switchTo(new Yellow(tickrate, State.YELLOW));
                 continue;
             }
             else if (temp.equals("p")) {
-                controller.strip.switchTo(new Purple(50, State.PURPLE));
+                controller.strip.switchTo(new Purple(tickrate, State.PURPLE));
                 continue;
             }
             else if (temp.equals("rb")) {
-                controller.strip.switchTo(new Rainbow(100, State.RAINBOW));
+                controller.strip.switchTo(new Rainbow(tickrate, State.RAINBOW));
                 continue;
             }
             else if (temp.equals("off")) {
-                controller.strip.switchTo(new Off(10, State.OFF));
+                controller.strip.switchTo(new Off(tickrate, State.OFF));
                 continue;
             }
             else if (temp.equals("silly")) {
-                controller.strip.switchTo(new Silly(10, State.SILLY));
+                controller.strip.switchTo(new Silly(tickrate, State.SILLY));
                 continue;
             }
         }
