@@ -15,8 +15,9 @@ public class Silly extends Pattern {
 
     @Override
     public void setPixels() {
-        for (int i = 0; i < LEDController.strip.length; i++) {
-            LEDController.strip.setPixelColourHSL(i, (float) (random.nextDouble() * 360), 1f, 0.5f);
+        for (int i = 0; i < LEDStrip.length; i++) {
+            LEDController.strip.setPixelColourHSB(i, (random.nextFloat()), 1f, 1f);
+            //LEDController.strip.setPixelColourHSL(i, (float) (random.nextDouble() * 360), 1f, 0.5f);
         }
         LEDController.strip.render();
     }
