@@ -13,12 +13,18 @@ public abstract class Pattern implements Runnable {
         this.ticksPerSecond = ticksPerSecond;
     }
 
+    /**
+     * Implemented in a pattern, doesn't really matter what it does, just has to set pixel colors
+     */
     public abstract void setPixels();
 
     public void stop() {
         running = false;
     }
 
+    /**
+     * runs setPixels() and increments the counter, ticks at ticksPerSecond
+     */
     @Override
     public void run() {
         long lastTime = System.nanoTime();
