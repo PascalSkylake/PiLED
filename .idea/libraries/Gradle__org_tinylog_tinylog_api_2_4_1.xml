@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: org.tinylog:tinylog-api:2.4.1">
+  <library name="Gradle: org.tinylog:tinylog-api:2.4.1" external-system-id="GRADLE">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.tinylog/tinylog-api/2.4.1/7135fec9e01c4c33e527e1bd9a246889e940efef/tinylog-api-2.4.1.jar!/" />
     </CLASSES>

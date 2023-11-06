@@ -4,15 +4,16 @@ import led.LEDStrip;
 import led.Pattern;
 import net.State;
 
-public class DisabledBlue extends Pattern {
-    public DisabledBlue(State name) {
-        super(name);
+public class Color extends Pattern {
+    float hue;
+    public Color() {
+        super(State.COLOR);
     }
 
     @Override
     public void setPixels() {
         for (int i = 0; i < LEDStrip.length; i++) {
-            setPixelColorRGB(i, 0, 0, 255);
+            setPixelColorHSB(i, hue, 1f, 1f);
         }
     }
 }

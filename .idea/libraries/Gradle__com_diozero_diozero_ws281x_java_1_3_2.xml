@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: com.diozero:diozero-ws281x-java:1.3.2">
+  <library name="Gradle: com.diozero:diozero-ws281x-java:1.3.2" external-system-id="GRADLE">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.diozero/diozero-ws281x-java/1.3.2/1e34df35b7afc151f5f612f00c48452cc2e16b15/diozero-ws281x-java-1.3.2.jar!/" />
     </CLASSES>

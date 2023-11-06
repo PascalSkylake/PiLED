@@ -1,34 +1,29 @@
 package led.patterns;
 
-import led.LEDController;
 import led.LEDStrip;
 import led.Pattern;
 import net.State;
 
 public class Rainbow extends Pattern {
-    private float speedFactor = 1.0f; // Initial speed factor
-
-    public Rainbow(int ticksPerSecond, State name) {
-        super(ticksPerSecond, name);
+    public Rainbow() {
+        super(State.RAINBOW);
     }
 
-    // Method to set the speed factor
-    public void setSpeedFactor(float speedFactor) {
-        this.speedFactor = speedFactor;
-    }
+
 
     @Override
     public void setPixels() {
+        currentPosition += speedFactor;
         for (int i = 0; i < LEDStrip.length; i++) {
-            // Calculate the adjusted position based on speedFactor
-            int adjustedPosition = (int) ((i + LEDStrip.counter * speedFactor) % LEDStrip.length);
+            float adjustedPosition = (i + currentPosition) % LEDStrip.length;
 
-            // Calculate the hue based on the adjusted position
-            float hue = ((float) adjustedPosition / LEDStrip.length) * 360;
+            if (adjustedPosition < 0) {
+                adjustedPosition += LEDStrip.length;
+            }
+            float hue = (adjustedPosition / LEDStrip.length) * 360;
 
             // Set the pixel color
-            LEDController.strip.setPixelColourHSL(adjustedPosition, hue, 1f, 0.5f);
+            setPixelColorHSB(i, hue, 1f, 0.5f);
         }
-        LEDController.strip.render();
     }
 }
